@@ -9,7 +9,9 @@ fn main() {
 
     let weights: Array2<f64> =
         Array2::from_shape_vec((3, 3), vec![0.1, 0.1, -0.3, 0.1, 0.2, 0.0, 0.0, 1.3, 0.1]).unwrap();
+    let hidden_weights: Array2<f64> =
+        Array2::from_shape_vec((3, 3), vec![0.3, 1.1, -0.3, 0.1, 0.2, 0.0, 0.0, 1.3, 0.1]).unwrap();
 
-    let network = Network::build(weights, number_of_toes, wlrec, nfans);
+    let network = Network::build(weights, hidden_weights, number_of_toes, wlrec, nfans);
     network.pred();
 }

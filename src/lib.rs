@@ -3,6 +3,7 @@ use std::f64;
 
 pub struct Network {
     weights: Array2<f64>,
+    hidden_weights: Array2<f64>,
     input1: Array1<f64>,
     input2: Array1<f64>,
     input3: Array1<f64>,
@@ -11,12 +12,14 @@ pub struct Network {
 impl Network {
     pub fn build(
         build_weights: Array2<f64>,
+        build_hidden_weights: Array2<f64>,
         build_input1: Array1<f64>,
         build_input2: Array1<f64>,
         build_input3: Array1<f64>,
     ) -> Network {
         let network = Network {
             weights: (build_weights),
+            hidden_weights: (build_hidden_weights),
             input1: (build_input1),
             input2: (build_input2),
             input3: (build_input3),
@@ -48,7 +51,8 @@ impl Network {
 
     pub fn pred(&self) {
         let inputs_vec = arr1(&[self.input1[0], self.input2[0], self.input3[0]]);
-        let prediction = Self::vect_mat_mul(inputs_vec.clone(), self.weights.clone());
+        let hidden = Self::vect_mat_mul(inputs_vec.clone(), self.hidden_weights.clone());
+        let prediction = Self::vect_mat_mul(hidden, self.weights.clone());
         println!("Prediction is ...");
         for i in prediction {
             println!("{}", i);
