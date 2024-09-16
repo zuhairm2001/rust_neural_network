@@ -1,3 +1,5 @@
+mod mnist_loader;
+use mnist_loader::{load_mnist, load_test_data, load_training_data};
 use ndarray::{array, Array1, Array2};
 use rust_neural_network::Network;
 use std::f64;
